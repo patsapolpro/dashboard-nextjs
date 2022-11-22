@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Router from 'next/router'
 import { AdminLayout } from '@layout';
 import {
     Card, Dropdown, Table, Form, Button, InputGroup
@@ -9,6 +10,10 @@ import {
   } from '@fortawesome/free-solid-svg-icons'
 
 const Request: NextPage = () => {
+  const handleNewRequest = () => {
+    return Router.push('/new-request')  
+  };
+
       return (
         <AdminLayout>
           <Card>
@@ -24,7 +29,7 @@ const Request: NextPage = () => {
                   Search
                 </Button>
               </InputGroup>
-              <button type="button" className="btn btn-dark" href="/new-request">New Request</button>
+              <button type="button" className="btn btn-dark" onClick={handleNewRequest}>New Request</button>
               <br/>
               <br/>
               <Table responsive bordered hover>
@@ -38,9 +43,9 @@ const Request: NextPage = () => {
                 </thead>
                 <tbody>
                     <tr>
-                          <td>Request-123</td>
-                          <td>did-1</td>
-                          <td>User DID</td>
+                          <td>Request-1</td>
+                          <td>did:ethr:0x539:0x026cfc6233f81f5d18b8ad60c97958fa1681d11fdd316abb8c679e2db057f8dd55</td>
+                          <td>Transcript</td>
                           <td>
                             <Dropdown align="end">
                               <Dropdown.Toggle
@@ -65,9 +70,9 @@ const Request: NextPage = () => {
                           </td>
                         </tr>
                         <tr>
-                          <td>Request-456</td>
-                          <td>did-2</td>
-                          <td>User DID</td>
+                          <td>Request-2</td>
+                          <td>did:ethr:0x539:0x026cfc6233f81f5d18b8ad60c97958fa1681d11fdd316abb8c679e2db057f8dd55</td>
+                          <td>Internship Certificate</td>
                           <td>
                           <Dropdown align="end">
                               <Dropdown.Toggle
@@ -92,9 +97,9 @@ const Request: NextPage = () => {
                             </td>
                         </tr>
                         <tr>
-                          <td>Request-789</td>
-                          <td>did-3</td>
-                          <td>User DID</td>
+                          <td>Request-3</td>
+                          <td>did:ethr:0x539:0x026cfc6233f81f5d18b8ad60c97958fa1681d11fdd316abb8c679e2db057f8dd55</td>
+                          <td>Graduation Certificate</td>
                           <td>
                           <Dropdown align="end">
                               <Dropdown.Toggle

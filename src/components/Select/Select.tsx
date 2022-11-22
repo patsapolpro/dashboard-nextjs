@@ -8,7 +8,7 @@ const Select = () => {
         <option value="0">Select User...</option>
         <option value="1">Transcript (ใบแสดงผลการศึกษา)</option>
         <option value="2">Internship Certificate (เอกสารรับรองการฝึกงาน)</option>
-        <option value="3">Graduation certificate (ใบจบการศึกษา)</option>
+        <option value="3">Graduation Certificate (ใบจบการศึกษา)</option>
       </select>
 	);
 }
