@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ShowImage from '../ShowImage/ShowImage';
 
@@ -28,6 +27,7 @@ const DropBox = () => {
 		});
 	}
 
+function DropBox({ onDrop }) {
 	const {
 		getRootProps,
 		getInputProps,

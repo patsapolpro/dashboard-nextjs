@@ -1,5 +1,7 @@
 import authReducer from './authReducer';
 import modalReducer from './modalReducer';
+import ssiReducer from './ssiReducer';
+
 
 export const initialState = {
   loading: {
@@ -27,6 +29,7 @@ const combineReducers = (slices) => (state, action) =>
 const appReducers = combineReducers({
   auth: authReducer,
   modal: modalReducer,
+  ssi: ssiReducer
 });
 
 export default appReducers;

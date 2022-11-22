@@ -3,10 +3,14 @@ import type { NextPage } from 'next'
 import React, { useCallback, useState } from 'react';
 import DropBox from '../components/DropBox/DropBox';
 import InputDID from '../components/Input/InputDID';
+<<<<<<< HEAD
 import SelectIssuer from 'src/components/Select/SelectIssuer';
 import Modal from 'src/components/Modal';
 
 import { MODAL_ACTION_TYPE, MODAL_TYPE } from '../store/reducers/modalReducer';
+=======
+import { SSI_ACTION_TYPE } from 'src/store/reducers/ssiReducer';
+>>>>>>> c77ede093ce8b08d43f7b659af488dbdbc937805
 import { useApiContext } from 'src/store/ApiContext';
 
 const fileTypes = ["JPEG", "PNG", "GIF"];
@@ -58,6 +62,7 @@ const Upload: NextPage = () => {
                     <button type="button" class="btn btn-warning bth-custom"><span class="cil-contrast btn-icon mr-2"></span>Clear</button>
                     <button type="button" class="btn btn-success bth-custom" onClick={upload}>Upload</button>
                   </div>
+                  {/* <ShowImage images={images} /> */}
                 </div>
               </div>
             </div>

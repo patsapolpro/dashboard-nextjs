@@ -9,6 +9,7 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { SyntheticEvent, useState } from 'react'
+import { useApiContext } from 'src/store/ApiContext'
 
 const Login: NextPage = () => {
   const router = useRouter();
