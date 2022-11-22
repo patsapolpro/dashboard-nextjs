@@ -7,3 +7,7 @@ export const AUTH_LOCAL_STORAGE_KEY = {
   JWT_TOKEN: 'PTX_JwtToken',
   REDIRECT: 'PTX_redirect'
 };
+
+export const SSI_ENPOINT = {
+  IDENTITY_BACKEND_ENDPOINT : 'https://dev-ssi.sslabs.sh/identity'
+};

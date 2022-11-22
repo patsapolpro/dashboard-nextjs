@@ -1,26 +1,6 @@
-import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import ShowImage from '../ShowImage/ShowImage';
 
-const DropBox = () => {
-	const [images, setImages] = useState([]);
-
-	const onDrop = (acceptedFiles) => {
-		acceptedFiles.map((file, index) => {
-			const reader = new FileReader();
-
-			reader.onload = function (e) {
-				setImages((prevState) => [
-					...prevState,
-					{ id: index, src: e.target.result },
-				]);
-			};
-
-			reader.readAsDataURL(file);
-			return file;
-		});
-	}
-
+function DropBox({ onDrop }) {
 	const {
 		getRootProps,
 		getInputProps,
@@ -44,24 +24,17 @@ const DropBox = () => {
 
 	return (
 		<>
-			{
-				(images.length == 0) ?
-				<section className="dropbox">
-					<div
-						className="dropbox-style dropbox"
-						{...getRootProps({ isDragAccept, isFocused, isDragReject })}>
-						<input {...getInputProps()} />
-						<p>Choose a file or drag it here</p>
-						<button type="button" className="btn btn-dark" onClick={open}>
-							Click to select file
-						</button>
-					</div>
-				</section>
-				: <></>
-			}
-			{ 
-				(images.length > 0) ? <ShowImage images={images} /> : <></>
-			}
+			<section className="dropbox">
+				<div
+					className="dropbox-style dropbox"
+					{...getRootProps({ isDragAccept, isFocused, isDragReject })}>
+					<input {...getInputProps()} />
+					<p>Drag 'n' drop some files here</p>
+					<button type="button" className="btn btn-dark" onClick={open}>
+						Click to select file
+					</button>
+				</div>
+			</section>
 			{/* <br></br>
 			<aside>
 				<h4>Detail</h4>

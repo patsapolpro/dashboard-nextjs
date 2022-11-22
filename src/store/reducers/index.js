@@ -1,4 +1,6 @@
 import authReducer from './authReducer';
+import ssiReducer from './ssiReducer';
+
 
 export const initialState = {
   loading: {
@@ -16,7 +18,8 @@ const combineReducers = (slices) => (state, action) =>
     state
   );
 const appReducers = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  ssi: ssiReducer
 });
 
 export default appReducers;

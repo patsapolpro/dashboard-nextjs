@@ -1,3 +1,3 @@
 import { asyncActionHandlers } from './authAction';
-
-export const dispatcher = { ...asyncActionHandlers };
+import { ssiActionHandlers } from './ssiActions';
+export const dispatcher = {...ssiActionHandlers};
