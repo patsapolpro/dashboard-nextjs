@@ -46,16 +46,13 @@ export const CreateVC = async (data) => {
     claims: claims
   }
 
-  try {
-  const response = await axios.post(`${SSI_ENPOINT.IDENTITY_BACKEND_ENDPOINT}/agent/subsidiary/vc`, bodyData, {
+  return await axios.post(`${SSI_ENPOINT.IDENTITY_BACKEND_ENDPOINT}/agent/subsidiary/vc`, bodyData, {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json'
     }
-  })  
-  
-  return response.data
-  } catch (e) {
-    return e;
-  }
+  }).then(
+    (response) => response.data,
+    (error) => console.log(error)
+  )
 };
