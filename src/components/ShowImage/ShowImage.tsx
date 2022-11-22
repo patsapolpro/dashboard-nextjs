@@ -45,12 +45,12 @@ const ShowImage = ({ images }) => {
 		    <div className="col-5">
 				<div className="container2 backgroud-grey">{images.map(show)}</div>
 		    </div>
-			<div className="col-1">
+			<div className="col-2">
 				<div className="container2 centered">
 					<FontAwesomeIcon icon={faRightLong} />
 				</div>
 			</div>
-		    <div className="col-6">
+		    <div className="col-5">
 				<div className="container2 backgroud-grey">
 					<JsonTable json={json} />
 				</div>

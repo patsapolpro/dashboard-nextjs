@@ -4,8 +4,15 @@ import ShowImage from '../ShowImage/ShowImage';
 
 const DropBox = () => {
 	const [images, setImages] = useState([]);
+	const [loading, setLoading] = useState(false);
 
-	const onDrop = (acceptedFiles) => {
+	const onDrop = async (acceptedFiles) => {
+		setLoading(true);
+
+		setTimeout(function() { 
+			setLoading(false);
+		}.bind(this), 2000)
+
 		acceptedFiles.map((file, index) => {
 			const reader = new FileReader();
 
@@ -44,8 +51,17 @@ const DropBox = () => {
 
 	return (
 		<>
+			{ 
+				(loading) ? 
+				  <div class="d-flex justify-content-center">
+					<div class="spinner-border" role="status">
+					  <span class="visually-hidden">Loading...</span>
+					</div>
+				  </div>
+				: <></>
+			}
 			{
-				(images.length == 0) ?
+				(!loading && images.length == 0) ?
 				<section className="dropbox">
 					<div
 						className="dropbox-style dropbox"
@@ -60,7 +76,7 @@ const DropBox = () => {
 				: <></>
 			}
 			{ 
-				(images.length > 0) ? <ShowImage images={images} /> : <></>
+				(!loading && images.length > 0) ? <ShowImage images={images} /> : <></>
 			}
 			{/* <br></br>
 			<aside>

@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import type { AppProps } from 'next/app'
 import { config } from '@fortawesome/fontawesome-svg-core'
-import { SSRProvider } from 'react-bootstrap'
 import ApiContext from '../store/ApiContext';
 import appReducers, { initialState } from '../store/reducers';
 
@@ -50,9 +49,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <title>Fmt Web</title>
         </Head>
         <ApiContext reducer={appReducers} initialState={initialState}>
-          <SSRProvider>
-            <Component {...pageProps} />
-          </SSRProvider>
+          <Component {...pageProps} />
         </ApiContext>
     </>
   );

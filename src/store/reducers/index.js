@@ -1,9 +1,18 @@
 import authReducer from './authReducer';
+import modalReducer from './modalReducer';
 
 export const initialState = {
   loading: {
     loading: false
-  }
+  },
+  modal: {
+    isOpen: false,
+    title: null,
+    message: null,
+    type: null,
+    onConfirm: null,
+    onCancel: null
+  },
 };
 
 const combineReducers = (slices) => (state, action) =>
@@ -16,7 +25,8 @@ const combineReducers = (slices) => (state, action) =>
     state
   );
 const appReducers = combineReducers({
-  auth: authReducer
+  auth: authReducer,
+  modal: modalReducer,
 });
 
 export default appReducers;
