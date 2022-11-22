@@ -1,6 +1,7 @@
 export const MODAL_ACTION_TYPE = {
   SET_STATE: 'MODAL/SET_STATE',
   OPEN: 'MODAL/OPEN',
+  OPEN_SUCESSS: 'MODAL/OPEN_SUCCESS',
   CLOSE: 'MODAL/CLOSE'
 };
 
@@ -25,6 +26,15 @@ const modalReducer = (state, action = {}) => {
         ...state,
         loading: false,
         isOpen: true,
+        ...payload
+      };
+    }
+    case MODAL_ACTION_TYPE.OPEN_SUCESSS: {
+      return {
+        ...state,
+        loading: false,
+        isOpen: false,
+        isSuccess: true,
         ...payload
       };
     }

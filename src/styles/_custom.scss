@@ -14,9 +14,9 @@
 }
 
 .container2 img {
-	height: 350px;
-	width: 270px;
-	margin-right: 15px;
+	height: 330px;
+	width: 250px;
+	margin: 20px;
 }
 
 .dropbox-style {
@@ -69,6 +69,19 @@
     overflow: scroll;
 }
 
+.centered {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	min-height: 50vh;
+}
+
+
 .margin-0 {
 	margin: 0;
+}
+
+.custom-color {
+	color: #5973F9
 }

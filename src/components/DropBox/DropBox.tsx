@@ -1,7 +1,8 @@
+import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ShowImage from '../ShowImage/ShowImage';
 
-const DropBox = () => {
+const DropBox = (props) => {
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -27,7 +28,6 @@ const DropBox = () => {
 		});
 	}
 
-function DropBox({ onDrop }) {
 	const {
 		getRootProps,
 		getInputProps,
@@ -41,13 +41,13 @@ function DropBox({ onDrop }) {
 		onDrop,
 		noClick: true,
 		noKeyboard: true,
-	});
+	});    
 
 	const lists = acceptedFiles.map((list) => (
 		<li key={list.path}>
 			{list.path} - {list.size} bytes
 		</li>
-	));
+	));  
 
 	return (
 		<>
@@ -76,7 +76,7 @@ function DropBox({ onDrop }) {
 				: <></>
 			}
 			{ 
-				(!loading && images.length > 0) ? <ShowImage images={images} /> : <></>
+				(!loading && images.length > 0) ? <ShowImage images={images} json={props} /> : <></>
 			}
 			{/* <br></br>
 			<aside>

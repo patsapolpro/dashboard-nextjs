@@ -5,6 +5,8 @@ export const CreateVC = async (data) => {
 
   const claims= []
 
+  //pass body
+
   claims.push({
     type: 'account',
     value: JSON.stringify(
@@ -38,9 +40,9 @@ export const CreateVC = async (data) => {
   });
   
   const bodyData = {
-    issuer :"did:ethr:0x539:0x03435d66b7fcd3136c386360dc71aee69b344129a24a530e3bf9b25c3c0aa7d55d",
+    issuer :"did:ethr:0x539:0x03435d66b7fcd3136c386360dc71aee69b344129a24a530e3bf9b25c3c0aa7d55d", //dynamic DID
     subject : "did:ethr:0x539:0x026cfc6233f81f5d18b8ad60c97958fa1681d11fdd316abb8c679e2db057f8dd55",
-    additionalType: 'Profile',
+    additionalType: 'Profile', //Health Report, Transcript
     claims: claims
   }
 

@@ -9,11 +9,7 @@ export const initialState = {
   },
   modal: {
     isOpen: false,
-    title: null,
-    message: null,
-    type: null,
-    onConfirm: null,
-    onCancel: null
+    isSuccess: false
   },
 };
 
