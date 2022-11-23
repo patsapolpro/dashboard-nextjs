@@ -21,7 +21,7 @@ const Model = (props) => {
 
     const callSSI = () => {
       dispatch({
-        type: SSI_ACTION_TYPE.SSI_SEND_REQUEST_SUCCESS,
+        type: SSI_ACTION_TYPE.SSI_SEND_REQUEST,
         payload: props.json
       })
 

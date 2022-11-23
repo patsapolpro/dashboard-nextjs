@@ -52,7 +52,10 @@ export const CreateVC = async (data) => {
       'Content-Type': 'application/json'
     }
   }).then(
-    (response) => response.data,
+    (response) => {
+      console.log("test : " +response.data);
+      return response.data
+    },
     (error) => console.log(error)
   )
 };
