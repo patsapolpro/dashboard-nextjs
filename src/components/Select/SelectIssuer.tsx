@@ -36,10 +36,17 @@ const SelectIssuer = () => {
   }
 
   const jsonHealth = {
-    "name": "Ben",
-    "weight": "100kg",
-    "height": "150cm",
-    "healthStatus": "Good Health"
+    "Name": "Ben MARUCHAI WATTANARUNGSON",
+    "Weight": "100kg",
+    "Height": "150cm",
+    "HealthStatus": "Good Health",
+    "HealthDetail": {
+      "Neutrophil": 4.62,
+      "Lymphocyte": 47.1,
+      "Monocyte": 44.6,
+      "Eosinophil": 5.6,
+      "Basophil": 1.8
+    }
   }
 
     const setIssuer = (event: { target: { value: any; }; }) => {

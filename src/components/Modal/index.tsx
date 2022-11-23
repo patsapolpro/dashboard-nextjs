@@ -9,7 +9,7 @@ import Router from "next/router";
 const Model = (props) => {
     const [state, dispatch] = useApiContext();
     const { isOpen, isSuccess } = state.modal;
-    const { did } = state.upload;
+    const { issuer } = state.upload;
   
     const closeModel = () => {
       dispatch({
@@ -68,7 +68,7 @@ const Model = (props) => {
               < CModalTitle>Result</CModalTitle>
               </CModalHeader>
               <CModalBody>
-                Issue Credential Successfully
+               {  (issuer) ? "Issue Credential Successfully" : "Send Request Successfully" }
               </CModalBody>
               <CModalFooter>
                 <CButton color="secondary" onClick={reload} >

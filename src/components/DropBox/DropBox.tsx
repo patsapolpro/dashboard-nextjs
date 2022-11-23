@@ -30,8 +30,6 @@ const DropBox = (props) => {
 		// 	return file;
 		// });
 
-		alert(issuer);
-
 		if(issuer == "did:ethr:0x539:0x03435d66b7fcd3136c386360dc71aee69b344129a24a530e3bf9b25c3c0aa7d55d") {
 			setImages("/assets/img/doc/transcript.jpeg")
 		} else {
