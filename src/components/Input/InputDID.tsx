@@ -7,7 +7,7 @@ function InputDID() {
 
     const setDIDs = (event: { target: { value: any; }; }) => {
         dispatch({
-            type: UPLOAD_ACTION_TYPE.SET_ISSUER,
+            type: UPLOAD_ACTION_TYPE.SET_DID,
             payload: {
              did: event.target.value
             }

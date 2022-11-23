@@ -24,7 +24,7 @@ const Model = (props) => {
       dispatch({
         type: SSI_ACTION_TYPE.SSI_SEND_REQUEST,
         payload: {
-          did: did
+          ...state.upload
         }
       })
 
@@ -60,7 +60,7 @@ const Model = (props) => {
               <CButton color="secondary" onClick={closeModel} >
                 Close
               </CButton>
-              <CButton color="primary" onClick={callSSI}>Confrim</CButton>
+              <CButton color="primary" onClick={callSSI}>Confirm</CButton>
             </CModalFooter>
           </CModal>
           <CModal visible={isSuccess}>

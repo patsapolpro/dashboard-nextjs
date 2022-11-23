@@ -22,34 +22,6 @@ const NewRequest: NextPage = () => {
     });
   }
 
-  const json = {
-    "university": "Kasetsart University",
-    "faculty": "Computer Engineering",
-    "gpa": "3.66",
-    "subject": [
-      {
-        "name": "Math 2",
-        "grade": "4"
-      },
-      {
-        "name": "Computer Networks",
-        "grade": "3"
-      },
-      {
-        "name": "Database",
-        "grade": "3"
-      },
-      {
-        "name": "Image Processing",
-        "grade": "3"
-      },
-      {
-        "name": "Numerical Method",
-        "grade": "2"
-      }
-    ]
-  }
-
   const reload = () => {
     Router.reload();
   }
@@ -57,9 +29,9 @@ const NewRequest: NextPage = () => {
       return (
         <AdminLayout>
           <Card>
-            <Card.Header>New Request</Card.Header>
+            <Card.Header>VERIFIER: New Request</Card.Header>
             <Card.Body>
-              <Modal json={json}/>
+              <Modal />
               <div className="container text-center">
                 <div className="row">
                   <InputDID />

@@ -7,11 +7,10 @@ import { COGNITO_LOCAL_STORAGE_KEY, COGNITO_RESPONSE } from '../../services/cons
 export const ssiActionHandlers = {
   [SSI_ACTION_TYPE.SSI_SEND_REQUEST]: ({ dispatch }) => async (action) => {
     // const { upload } = action.payload;
-    alert(JSON.stringify(action.payload));
 
     // dispatch({ type: LOADING_ACTION_TYPE.OPEN });
 
-    const result = await CreateVC({});
+    const result = await CreateVC(action.payload);
 
     // dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
     if (result) {

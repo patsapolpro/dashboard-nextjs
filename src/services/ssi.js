@@ -41,12 +41,12 @@ const jsonHealth = {
 
   claims.push({
     type: 'Transcript',
-    value: JSON.stringify(jsonUniversity)
+    value: JSON.stringify(data.payload)
   });
   
   const bodyData = {
-    issuer : "did:ethr:0x539:0x03cf3685b9a233960a06534c828c619c28f1cba6e2e5af9a036cd582a295fda409",
-    subject : "did:ethr:0x539:0x0246ba3ba28535aba16ca096696877959f37a974cf9259ef63cf95f1e662be840f",
+    issuer : data.issuer,
+    subject : data.did,
     additionalType: 'Transcript', //Health Report, Transcript
     claims: claims
   }

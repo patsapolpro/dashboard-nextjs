@@ -15,14 +15,19 @@ const fileTypes = ["JPEG", "PNG", "GIF"];
 
 const Upload: NextPage = () => {
     const [state, dispatch] = useApiContext();
+    const { issuer, did } = state.upload;
 
-    const upload = () => {
-      dispatch({
-        type: MODAL_ACTION_TYPE.OPEN,
-        payload: {
-          type: MODAL_TYPE.ALERT
-        }
-      });
+    const upload = () => { 
+      if(issuer && did) {
+        dispatch({
+          type: MODAL_ACTION_TYPE.OPEN,
+          payload: {
+            type: MODAL_TYPE.ALERT
+          }
+        });
+      } else {
+        alert("Please Input")
+      }
     }
 
     const json = {
@@ -64,7 +69,7 @@ const Upload: NextPage = () => {
             <div className="col-12">
               <div className="card">
                 <div className="card-header">
-                  <strong>Issue Credentials</strong>
+                  <strong>ISSUER: Issue Credentials</strong>
                 </div>
                 <div className="card-body">
                   <Modal json={json}/>

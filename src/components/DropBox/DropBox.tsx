@@ -76,7 +76,7 @@ const DropBox = (props) => {
 				: <></>
 			}
 			{ 
-				(!loading && images.length > 0) ? <ShowImage images={images} json={props} /> : <></>
+				(!loading && images.length > 0) ? <ShowImage images={images} lists={lists} /> : <></>
 			}
 			{/* <br></br>
 			<aside>
