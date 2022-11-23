@@ -8,16 +8,12 @@ const ShowImage = ({lists, images }) => {
 	const [state, dispatch] = useApiContext();
 	const { payload } = state.upload;
 
-	const show = (image) => {
-		return <Image image={image} />;
-	};
-
 	return (
 		<div className="container text-center">
 		  <div className="row">
 		    <div className="col-5">
 				<div className="container2 backgroud-grey">
-					{images.map(show)}
+					<Image image={images} />
 				</div>
 		    </div>
 			<div className="col-1">

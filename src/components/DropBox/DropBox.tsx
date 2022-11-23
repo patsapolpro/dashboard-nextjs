@@ -1,31 +1,42 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useApiContext } from 'src/store/ApiContext';
 import ShowImage from '../ShowImage/ShowImage';
 
 const DropBox = (props) => {
 	const [images, setImages] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [state, dispatch] = useApiContext();
+	const { issuer } = state.upload;
 
 	const onDrop = async (acceptedFiles) => {
 		setLoading(true);
 
 		setTimeout(function() { 
 			setLoading(false);
-		}.bind(this), 2000)
+		}.bind(this), 2000);
 
-		acceptedFiles.map((file, index) => {
-			const reader = new FileReader();
+		// acceptedFiles.map((file, index) => {
+		// 	const reader = new FileReader();
 
-			reader.onload = function (e) {
-				setImages((prevState) => [
-					...prevState,
-					{ id: index, src: e.target.result },
-				]);
-			};
+		// 	reader.onload = function (e) {
+		// 		setImages((prevState) => [
+		// 			...prevState,
+		// 			{ id: index, src: e.target.result },
+		// 		]);
+		// 	};
 
-			reader.readAsDataURL(file);
-			return file;
-		});
+		// 	reader.readAsDataURL(file);
+		// 	return file;
+		// });
+
+		alert(issuer);
+
+		if(issuer == "did:ethr:0x539:0x03435d66b7fcd3136c386360dc71aee69b344129a24a530e3bf9b25c3c0aa7d55d") {
+			setImages("/assets/img/doc/transcript.jpeg")
+		} else {
+			setImages("/assets/img/doc/medical_report.png")
+		}
 	}
 
 	const {
