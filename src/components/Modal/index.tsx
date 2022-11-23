@@ -9,6 +9,7 @@ import Router from "next/router";
 const Model = (props) => {
     const [state, dispatch] = useApiContext();
     const { isOpen, isSuccess } = state.modal;
+    const { did } = state.upload;
   
     const closeModel = () => {
       dispatch({
@@ -22,7 +23,9 @@ const Model = (props) => {
     const callSSI = () => {
       dispatch({
         type: SSI_ACTION_TYPE.SSI_SEND_REQUEST,
-        payload: props.json
+        payload: {
+          did: did
+        }
       })
 
       dispatch({

@@ -44,7 +44,7 @@ const Request: NextPage = () => {
                 </thead>
                 <tbody>
                     <tr>
-                          <td>Request-1</td>
+                          <td>Request-3</td>
                           <td>did:ethr:0x539:0x026cfc6233f81f5d18b8ad60c97958fa1681d11fdd316abb8c679e2db057f8dd55</td>
                           <td>Transcript</td>
                           <td>
@@ -98,7 +98,7 @@ const Request: NextPage = () => {
                             </td>
                         </tr>
                         <tr>
-                          <td>Request-3</td>
+                          <td>Request-1</td>
                           <td>did:ethr:0x539:0x026cfc6233f81f5d18b8ad60c97958fa1681d11fdd316abb8c679e2db057f8dd55</td>
                           <td>Graduation Certificate</td>
                           <td>

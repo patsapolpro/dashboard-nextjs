@@ -6,43 +6,48 @@ export const CreateVC = async (data) => {
   const claims= []
 
   //pass body
+  const jsonUniversity = {
+    "university": "Kasetsart University",
+    "faculty": "Computer Engineering",
+    "gpa": "3.23",
+    "subject": [
+        {
+            "name": "Math 2",
+            "grade": "4"
+        },
+        {
+            "name": "Computer Networks",
+            "grade": "3"
+        },
+        {
+            "name": "Introduction Database",
+            "grade": "3"
+        },
+        {
+            "name": "Digital Image Processing",
+            "grade": "3"
+        },
+        {
+            "name": "Numerical Method",
+            "grade": "2"
+        }
+    ]
+}
+
+const jsonHealth = {
+  "test": "Kasetsart University",
+  "faculty": "Computer Engineering",
+}
 
   claims.push({
-    type: 'account',
-    value: JSON.stringify(
-      {
-        "university": "Chula University",
-        "faculty": "Computer Engineering",
-        "gpa": "3.66",
-        "subject": [
-            {
-                "name": "Calculus",
-                "grade": "4"
-            },
-            {
-                "name": "Computer Networks",
-                "grade": "3"
-            },
-            {
-                "name": "Introduction Database",
-                "grade": "3"
-            },
-            {
-                "name": "Digital Image Processing",
-                "grade": "3"
-            },
-            {
-                "name": "Numerical Method",
-                "grade": "2"
-            }
-        ]
-    })
+    type: 'Transcript',
+    value: JSON.stringify(jsonUniversity)
   });
   
   const bodyData = {
-    issuer :"did:ethr:0x539:0x03435d66b7fcd3136c386360dc71aee69b344129a24a530e3bf9b25c3c0aa7d55d", //dynamic DID
-    subject : "did:ethr:0x539:0x026cfc6233f81f5d18b8ad60c97958fa1681d11fdd316abb8c679e2db057f8dd55",
-    additionalType: 'Profile', //Health Report, Transcript
+    issuer : "did:ethr:0x539:0x03cf3685b9a233960a06534c828c619c28f1cba6e2e5af9a036cd582a295fda409",
+    subject : "did:ethr:0x539:0x0246ba3ba28535aba16ca096696877959f37a974cf9259ef63cf95f1e662be840f",
+    additionalType: 'Transcript', //Health Report, Transcript
     claims: claims
   }
 
@@ -53,7 +58,7 @@ export const CreateVC = async (data) => {
     }
   }).then(
     (response) => {
-      console.log("test : " +response.data);
+      console.log("test : " + JSON.stringify(response.data));
       return response.data
     },
     (error) => console.log(error)

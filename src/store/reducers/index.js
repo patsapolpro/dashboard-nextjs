@@ -1,7 +1,7 @@
 import authReducer from './authReducer';
 import modalReducer from './modalReducer';
 import ssiReducer from './ssiReducer';
-
+import uploadReducer from './uploadReducer';
 
 export const initialState = {
   loading: {
@@ -11,6 +11,11 @@ export const initialState = {
     isOpen: false,
     isSuccess: false
   },
+  upload: {
+    issuer: "",
+    did: "",
+    payload: {}
+  }
 };
 
 const combineReducers = (slices) => (state, action) =>
@@ -25,7 +30,8 @@ const combineReducers = (slices) => (state, action) =>
 const appReducers = combineReducers({
   auth: authReducer,
   modal: modalReducer,
-  ssi: ssiReducer
+  ssi: ssiReducer,
+  upload: uploadReducer
 });
 
 export default appReducers;
