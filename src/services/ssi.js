@@ -40,14 +40,14 @@ const jsonHealth = {
 }
 
   claims.push({
-    type: 'Transcript',
+    type: (data.issuer == 'did:ethr:0x539:0x03435d66b7fcd3136c386360dc71aee69b344129a24a530e3bf9b25c3c0aa7d55d') ? 'Transcript' : 'Health Report',
     value: JSON.stringify(data.payload)
   });
   
   const bodyData = {
     issuer : data.issuer,
     subject : data.did,
-    additionalType: 'Transcript', //Health Report, Transcript
+    additionalType: (data.issuer == 'did:ethr:0x539:0x03435d66b7fcd3136c386360dc71aee69b344129a24a530e3bf9b25c3c0aa7d55d') ? 'Transcript' : 'Health Report', //Health Report, Transcript
     claims: claims
   }
 

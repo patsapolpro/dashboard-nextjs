@@ -15,7 +15,6 @@ export default function Breadcrumb() {
       >
         Identity X
       </BSBreadcrumb.Item>
-      <BSBreadcrumb.Item active>Data</BSBreadcrumb.Item>
     </BSBreadcrumb>
   )
 }
