@@ -1,4 +1,4 @@
-import { AUTH_LOCAL_STORAGE_KEY } from '../services/constant';
+import { AUTH_LOCAL_STORAGE_KEY } from '../constant/auth-constant';
 
 export function clearLocalStorage(key) {
   if (typeof window !== 'undefined') {

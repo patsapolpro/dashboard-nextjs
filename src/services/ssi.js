@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SSI_ENPOINT } from '../services/constant';
+import { SSI_ENPOINT } from '../constant/auth-constant';
 
 export const CreateVC = async (data) => {
 

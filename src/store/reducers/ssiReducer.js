@@ -1,4 +1,4 @@
-import { COGNITO_CHALLENGE, COGNITO_RESPONSE } from '../../services/constant';
+import { COGNITO_CHALLENGE, COGNITO_RESPONSE } from '../../constant/auth-constant';
 
 export const SSI_ACTION_TYPE = {
   SSI_SEND_REQUEST: 'SSI_SEND_REQUEST',

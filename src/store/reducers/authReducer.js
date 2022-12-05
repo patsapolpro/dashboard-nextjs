@@ -1,5 +1,3 @@
-import { COGNITO_CHALLENGE, COGNITO_RESPONSE } from '../../services/constant';
-
 export const AUTH_STATE_KEY = {
   ID_TOKEN: 'idToken',
   STATUS: 'STATUS',
@@ -10,74 +8,39 @@ export const AUTH_STATE_KEY = {
   CHANGE_PASSWORD: 'CHANGE_PASSWORD'
 };
 
-export const AUTH_ACTION_TYPE = {
-  SET_STATUS: 'AUTH/SET_STATUS',
-  SET_STATE: 'AUTH/SET_STATE',
-  REQUEST: 'AUTH/REQUEST',
-  LOGIN_REQUEST: 'AUTH/LOGIN_REQUEST',
-  LOGIN_SUCCESS: 'AUTH/LOGIN_SUCCESS',
-  LOGIN_ERROR: 'AUTH/LOGIN_ERROR',
-  LOGOUT: 'AUTH/LOGOUT',
-  LOGOUT_REQUEST: 'AUTH/LOGOUT_REQUEST',
-  FORGOT_PASSWORD_REQUEST: 'AUTH/FORGOT_PASSWORD_REQUEST',
-  FORGOT_PASSWORD_SUCCESS: 'AUTH/FORGOT_PASSWORD_SUCCESS',
-  RESET_PASSWORD_REQUEST: 'AUTH/RESET_PASSWORD_REQUEST',
-  RESET_PASSWORD_SUCCESS: 'AUTH/RESET_PASSWORD_SUCCESS',
-  GET_CURRENT_SESSION_REQUEST: 'AUTH/GET_CURRENT_SESSION_REQUEST',
-  GET_CURRENT_SESSION_SUCCESS: 'AUTH/GET_CURRENT_SESSION_SUCCESS',
-  GET_CURRENT_SESSION_FAILURE: 'AUTH/GET_CURRENT_SESSION_FAILURE',
-  NEW_PASSWORD_REQUIRED: 'AUTH/NEW_PASSWORD_REQUIRED',
-  NEW_PASSWORD_REQUEST: 'AUTH/NEW_PASSWORD_REQUEST',
-  NEW_PASSWORD_SUCCESS: 'AUTH/NEW_PASSWORD_SUCCESS'
+export const LOGIN_CONSTANT = {
+  LOGIN_REQUEST: 'LOGIN_REQUEST',
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+  FORCE_CHANGE_PASSWORD: 'FORCE_CHANGE_PASSWORD',
+  FORGOT_PASSWORD: 'FORGOT_PASSWORD',
+  SET_STATE: 'SET_STATE',
+  SET_STATUS: 'SET_STATUS',
+  LOGOUT: 'LOGOUT',
+  GET_CURRENT_SESSION_REQUEST: 'GET_CURRENT_SESSION_REQUEST'
 };
 
 const authReducer = (state, action) => {
   switch (action.type) {
-    case AUTH_ACTION_TYPE.SET_STATE:
+    case LOGIN_CONSTANT.SET_STATE:
       return {
         ...state,
         [action.payload.key]: action.payload.value
       };
-    case AUTH_ACTION_TYPE.SET_STATUS:
+    case LOGIN_CONSTANT.SET_STATUS:
       return {
         ...state,
         authStatus: action.payload
       };
-    case AUTH_ACTION_TYPE.LOGIN_SUCCESS:
+    case LOGIN_CONSTANT.LOGIN_SUCCESS:
       return {
         ...state,
-        authStatus: COGNITO_CHALLENGE.LOGIN_SUCCESS,
+        authStatus: LOGIN_CONSTANT.LOGIN_SUCCESS,
         ...action.payload
       };
-    case AUTH_ACTION_TYPE.LOGOUT:
+    case LOGIN_CONSTANT.LOGOUT:
       return {
-        authStatus: COGNITO_CHALLENGE.LOGOUT_SUCCESS
-      };
-    case AUTH_ACTION_TYPE.NEW_PASSWORD_REQUIRED:
-      return {
-        ...state,
-        authStatus: COGNITO_CHALLENGE.NEW_PASSWORD_REQUIRED,
-        cognitoUser: action.payload
-      };
-    case AUTH_ACTION_TYPE.FORGOT_PASSWORD_SUCCESS:
-      return {
-        ...state,
-        authStatus: COGNITO_RESPONSE.FORGOT_PASSWORD,
-        changePassword: false,
-        email: action.payload
-      };
-    case AUTH_ACTION_TYPE.RESET_PASSWORD_SUCCESS:
-      return {
-        ...state,
-        changePassword: true,
-        authStatus: null
-      };
-    case AUTH_ACTION_TYPE.NEW_PASSWORD_SUCCESS:
-      return {
-        ...state,
-        newPassword: true,
-        authStatus: null,
-        cognitoUser: null
+        authStatus: LOGIN_CONSTANT.LOGOUT_SUCCESS
       };
     default:
       return state;

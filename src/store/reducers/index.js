@@ -2,14 +2,24 @@ import authReducer from './authReducer';
 import modalReducer from './modalReducer';
 import ssiReducer from './ssiReducer';
 import uploadReducer from './uploadReducer';
+import loadingReducer from './loadingReducer';
 
 export const initialState = {
   loading: {
     loading: false
   },
+  auth: {
+    authStatus: null,
+    username: null,
+    password: null
+  },
   modal: {
     isOpen: false,
-    isSuccess: false
+    title: null,
+    message: null,
+    type: null,
+    onConfirm: null,
+    onCancel: null
   },
   upload: {
     issuer: "",
@@ -31,7 +41,8 @@ const appReducers = combineReducers({
   auth: authReducer,
   modal: modalReducer,
   ssi: ssiReducer,
-  upload: uploadReducer
+  upload: uploadReducer,
+  loading: loadingReducer
 });
 
 export default appReducers;

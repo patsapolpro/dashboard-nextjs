@@ -1,50 +1,49 @@
-import Router from 'next/router';
-import { AUTH_ACTION_TYPE } from '../reducers/authReducer';
-import { clearLocalStorage } from '../../libs/utility';
-import { COGNITO_LOCAL_STORAGE_KEY, COGNITO_RESPONSE } from '../../services/constant';
+import { LOGIN_CONSTANT } from '../reducers/authReducer';
+import { MODAL_ACTION_TYPE, MODAL_TYPE } from '../reducers/modalReducer';
+import { LOADING_ACTION_TYPE } from '../reducers/loadingReducer';
+import {
+  signIn,
+  currentSession
+} from '../../services/auth';
 
 export const asyncActionHandlers = {
-
-  [AUTH_ACTION_TYPE.GET_CURRENT_SESSION_REQUEST]: ({ dispatch }) => async () => {
+  [LOGIN_CONSTANT.GET_CURRENT_SESSION_REQUEST]: ({ dispatch }) => async () => {
     dispatch({ type: LOADING_ACTION_TYPE.OPEN });
-    const idToken = await currentSession();
+    const isSessionExpired = await currentSession();
 
     dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
-    if (idToken.payload) {
-      const {
-        email: userEmail,
-        'custom:role': role,
-        'custom:vendor_id': vendorId,
-        'custom:vendor_name': vendorName
-      } = idToken.payload;
-
+    if (isSessionExpired) {
       dispatch({
-        type: AUTH_ACTION_TYPE.LOGIN_SUCCESS,
-        payload: { userEmail, role, vendorId, vendorName }
+        type: LOGIN_CONSTANT.LOGIN_SUCCESS,
+        payload: {  }
       });
     } else {
-      dispatch({ type: AUTH_ACTION_TYPE.LOGOUT });
+      dispatch({ type: LOGIN_CONSTANT.LOGOUT });
     }
   },
-  [AUTH_ACTION_TYPE.LOGIN_REQUEST]: ({ dispatch }) => async (action) => {
+  [LOGIN_CONSTANT.LOGIN_REQUEST]: ({ dispatch }) => async (action) => {
     const { username, password } = action.payload;
+    console.log(action.payload);
     dispatch({ type: LOADING_ACTION_TYPE.OPEN });
-    const { token } = await signIn({
+    const response = await signIn({
       username,
       password
     });
     dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
-    if (token) {
+    if (response && response.token) {
       dispatch({
-        type: AUTH_ACTION_TYPE.LOGIN_SUCCESS,
+        type: LOGIN_CONSTANT.LOGIN_SUCCESS,
         payload: { token }
       });
+    } else {
+      dispatch({
+        type: MODAL_ACTION_TYPE.OPEN,
+        payload: {
+          type: MODAL_TYPE.ALERT,
+          title: 'login-error-title',
+          message: 'login-error-message'
+        }
+      });
     }
-  },
-  [AUTH_ACTION_TYPE.LOGOUT_REQUEST]: ({ dispatch }) => async (action) => {
-    dispatch({ type: LOADING_ACTION_TYPE.OPEN });
-    await signOut();
-    dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
-    dispatch({ type: AUTH_ACTION_TYPE.LOGOUT });
   }
 };
