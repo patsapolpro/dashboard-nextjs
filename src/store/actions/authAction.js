@@ -9,41 +9,46 @@ import {
 export const asyncActionHandlers = {
   [LOGIN_CONSTANT.GET_CURRENT_SESSION_REQUEST]: ({ dispatch }) => async () => {
     dispatch({ type: LOADING_ACTION_TYPE.OPEN });
+
     const isSessionExpired = await currentSession();
 
     dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
     if (isSessionExpired) {
       dispatch({
-        type: LOGIN_CONSTANT.LOGIN_SUCCESS,
-        payload: {  }
+        type: LOGIN_CONSTANT.LOGIN_SUCCESS
       });
     } else {
       dispatch({ type: LOGIN_CONSTANT.LOGOUT });
     }
   },
-  [LOGIN_CONSTANT.LOGIN_REQUEST]: ({ dispatch }) => async (action) => {
+  [LOGIN_CONSTANT.LOGIN_REQUEST]: ({ dispatch }) => (action) => {
     const { username, password } = action.payload;
-    console.log(action.payload);
+
     dispatch({ type: LOADING_ACTION_TYPE.OPEN });
-    const response = await signIn({
-      username,
-      password
-    });
-    dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
-    if (response && response.token) {
-      dispatch({
-        type: LOGIN_CONSTANT.LOGIN_SUCCESS,
-        payload: { token }
+
+
+    setTimeout( async () => {
+      const response = await signIn({
+        username,
+        password
       });
-    } else {
-      dispatch({
-        type: MODAL_ACTION_TYPE.OPEN,
-        payload: {
-          type: MODAL_TYPE.ALERT,
-          title: 'login-error-title',
-          message: 'login-error-message'
-        }
-      });
-    }
+
+      dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
+      if (response && response.token) {
+        dispatch({
+          type: LOGIN_CONSTANT.LOGIN_SUCCESS,
+          payload: { token }
+        });
+      } else {
+        dispatch({
+          type: MODAL_ACTION_TYPE.OPEN,
+          payload: {
+            type: MODAL_TYPE.ALERT,
+            title: 'login-error-title',
+            message: 'login-error-message'
+          }
+        });
+      }
+    }, 3000);
   }
 };

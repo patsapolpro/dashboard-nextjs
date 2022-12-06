@@ -15,7 +15,7 @@ const withAuth = (WrappedComponent) => (props) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if ((authStatus && authStatus !== LOGIN_CONSTANT.LOGIN_SUCCESS) || !getLocalStorage(AUTH_LOCAL_STORAGE_KEY.JWT_TOKEN)) {
-        if (authStatus !== LOGIN_CONSTANT.LOGOUT_SUCCESS) {
+        if (authStatus !== LOGIN_CONSTANT.LOGIN_SUCCESS) {
           if (Router.asPath !== ROUTE_PRIVATE.LOGOUT) {
             registerLocalStorage(AUTH_LOCAL_STORAGE_KEY.REDIRECT, Router.asPath);
           }

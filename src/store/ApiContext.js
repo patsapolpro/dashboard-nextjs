@@ -1,16 +1,17 @@
-import React, { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { dispatcher } from '../store/actions';
 import { useReducerAsync } from 'use-reducer-async';
 
-const apiContext = createContext();
+const ApiContext = createContext();
 
-const ApiContext = ({ reducer, initialState = {}, children }) => {
+const AppWrapper = ({ reducer, initialState = {}, children }) => {
   const [state, dispatch] = useReducerAsync(reducer, initialState, dispatcher);
   const memoize = [state, dispatch];
 
-  return <apiContext.Provider value={memoize}>{children}</apiContext.Provider>;
+  return <ApiContext.Provider value={memoize}>{children}</ApiContext.Provider>;
 };
 
-export const useApiContext = () => React.useContext(apiContext);
+export const useApiContext = () => useContext(ApiContext);
 
-export default ApiContext;
+export default AppWrapper;
+

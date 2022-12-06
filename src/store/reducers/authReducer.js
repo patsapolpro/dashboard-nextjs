@@ -40,7 +40,8 @@ const authReducer = (state, action) => {
       };
     case LOGIN_CONSTANT.LOGOUT:
       return {
-        authStatus: LOGIN_CONSTANT.LOGOUT_SUCCESS
+        ...state,
+        authStatus: LOGIN_CONSTANT.LOGOUT
       };
     default:
       return state;

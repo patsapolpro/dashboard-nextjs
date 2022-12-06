@@ -8,23 +8,24 @@ export const LOADING_STATE_KEY = {
   LOADING: 'loading'
 };
 
-const loadingReducer = (state, action = {}) => {
-  const { payload, type } = action;
-  switch (type) {
+const loadingReducer = (state, action) => {
+  switch (action.type) {
     case LOADING_ACTION_TYPE.OPEN: {
       return {
+        ...state,
         loading: true
-      };
+      }; 
     }
     case LOADING_ACTION_TYPE.CLOSE: {
       return {
+        ...state,
         loading: false
       };
     }
     case LOADING_ACTION_TYPE.SET_STATE:
       return {
         ...state,
-        [payload.key]: payload.value
+        [action.payload.key]: action.payload.value
       };
     default:
       return state;
@@ -32,3 +33,12 @@ const loadingReducer = (state, action = {}) => {
 };
 
 export default loadingReducer;
+
+export const loadingCreators = {
+  setLoadingState: (key, value) => ({
+    type: LOADING_ACTION_TYPE.SET_STATE,
+    payload: { key, value }
+  })
+};
+
+export const loadingStateSelector = (state, key) => state.loading[key];

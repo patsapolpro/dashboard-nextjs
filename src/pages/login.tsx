@@ -7,28 +7,28 @@ import {
   Col, Container, Form, InputGroup, Row,
 } from 'react-bootstrap'
 import { useRouter } from 'next/router'
-import { SyntheticEvent, useEffect, useState } from 'react'
-import { useApiContext } from 'src/store/ApiContext'
-import { AUTH_LOCAL_STORAGE_KEY } from 'src/constant/auth-constant'
-import { clearLocalStorage, getLocalStorage } from 'src/libs/utility'
-import { ROUTE_PRIVATE } from 'src/constant/route-constant'
-import { LOGIN_CONSTANT } from "src/store/reducers/authReducer";
+import { useEffect } from 'react'
+import { useApiContext } from '../store/ApiContext'
+import { AUTH_LOCAL_STORAGE_KEY } from '../constant/auth-constant'
+import { clearLocalStorage, getLocalStorage } from '../libs/utility'
+import { ROUTE_PRIVATE } from '../constant/route-constant'
+import { LOGIN_CONSTANT } from "../store/reducers/authReducer";
 import { CForm } from '@coreui/react'
 import { useForm } from "react-hook-form";
+import { LOADING_ACTION_TYPE } from 'src/store/reducers/loadingReducer'
 
 const Login: NextPage = () => {
   const router = useRouter();
   const [state, dispatch] = useApiContext();
   const {
-    auth: { authStatus, username, password },
-    loading: { loading }
+    auth,
+    loading
   } = state;
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    switch (authStatus) {
+    switch (auth.authStatus) {
       case LOGIN_CONSTANT.LOGIN_SUCCESS:
-        console.log("authStatus");
         const redirect = getLocalStorage(AUTH_LOCAL_STORAGE_KEY.REDIRECT);
         if (redirect) {
           router.push(redirect);
@@ -45,10 +45,9 @@ const Login: NextPage = () => {
       //   router.push(ROUTE_PUBLIC.SET_NEW_PASSWORD);
       //   break;
     }
-  }, [authStatus]);
+  }, [auth.authStatus]);
 
   const onSubmit = (data: any) => {
-    console.log(data);
     dispatch({
       type: LOGIN_CONSTANT.LOGIN_REQUEST,
       payload: { username: data.username, password: data.password }
@@ -78,10 +77,10 @@ const Login: NextPage = () => {
                         />
                       </InputGroup.Text>
                       <Form.Control
-                        disabled={loading}
+                        disabled={loading.loading}
                         placeholder="Username"
                         aria-label="Username"
-                        {...register("username", { required: true, maxLength: 20 }) }
+                        {...register("username", { required: true }) }
                       />
                     </InputGroup>
 
@@ -95,7 +94,7 @@ const Login: NextPage = () => {
                       <Form.Control
                         type="password"
                         required
-                        disabled={loading}
+                        disabled={loading.loading}
                         placeholder="Password"
                         aria-label="Password"
                         {...register("password", { required: true }) }
@@ -104,7 +103,7 @@ const Login: NextPage = () => {
 
                     <Row>
                       <Col xs={6}>
-                        <Button className="px-4" variant="primary" type="submit" disabled={loading}>Login</Button>  
+                        <Button className="px-4" variant="primary" type="submit" disabled={loading.loading}>Login</Button>  
                       </Col>
                       <Col xs={6} className="text-end">
                         <Button className="px-0" variant="link" type="submit">

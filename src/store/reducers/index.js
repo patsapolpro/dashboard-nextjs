@@ -39,9 +39,6 @@ const combineReducers = (slices) => (state, action) =>
   );
 const appReducers = combineReducers({
   auth: authReducer,
-  modal: modalReducer,
-  ssi: ssiReducer,
-  upload: uploadReducer,
   loading: loadingReducer
 });
 
