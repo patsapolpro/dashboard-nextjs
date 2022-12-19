@@ -20,6 +20,8 @@ export const signIn = async (params) => {
             return undefined
         }
 
+        await delay(3000)
+
         const idToken = jwt.sign({ username }, jwtKey, {
             algorithm: "HS256",
             expiresIn: jwtExpirySeconds,
@@ -32,6 +34,10 @@ export const signIn = async (params) => {
       return e;
     }
 };
+
+const delay = (time) => {
+  return new Promise(resolve => setTimeout(resolve, time));
+} 
 
 export const currentSession = async () => {
     try {

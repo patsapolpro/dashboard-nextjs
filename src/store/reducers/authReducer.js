@@ -36,8 +36,8 @@ const authReducer = (state, action) => {
       return {
         ...state,
         authStatus: LOGIN_CONSTANT.LOGIN_SUCCESS,
-        ...action.payload
-      };
+        ...action.payload,
+      }
     case LOGIN_CONSTANT.LOGOUT:
       return {
         ...state,

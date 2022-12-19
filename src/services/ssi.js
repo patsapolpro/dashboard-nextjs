@@ -58,7 +58,6 @@ const jsonHealth = {
     }
   }).then(
     (response) => {
-      console.log("test : " + JSON.stringify(response.data));
       return response.data
     },
     (error) => console.log(error)

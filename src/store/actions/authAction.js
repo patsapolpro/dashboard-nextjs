@@ -1,10 +1,10 @@
-import { LOGIN_CONSTANT } from '../reducers/authReducer';
-import { MODAL_ACTION_TYPE, MODAL_TYPE } from '../reducers/modalReducer';
-import { LOADING_ACTION_TYPE } from '../reducers/loadingReducer';
+import { LOGIN_CONSTANT } from '../reducers/authReducer'
+import { MODAL_ACTION_TYPE, MODAL_TYPE } from '../reducers/modalReducer'
+import { LOADING_ACTION_TYPE } from '../reducers/loadingReducer'
 import {
   signIn,
-  currentSession
-} from '../../services/auth';
+  currentSession,
+} from '../../services/auth'
 
 export const asyncActionHandlers = {
   [LOGIN_CONSTANT.GET_CURRENT_SESSION_REQUEST]: ({ dispatch }) => async () => {
@@ -21,34 +21,34 @@ export const asyncActionHandlers = {
       dispatch({ type: LOGIN_CONSTANT.LOGOUT });
     }
   },
-  [LOGIN_CONSTANT.LOGIN_REQUEST]: ({ dispatch }) => (action) => {
+  [LOGIN_CONSTANT.LOGIN_REQUEST]: ({ dispatch }) => async (action) => {
     const { username, password } = action.payload;
+
+    console.log("action.payload : "+ JSON.stringify(action.payload))
 
     dispatch({ type: LOADING_ACTION_TYPE.OPEN });
 
+    const response = await signIn({
+      username,
+      password
+    });
+    console.log("test2 : "+ JSON.stringify(response)) 
 
-    setTimeout( async () => {
-      const response = await signIn({
-        username,
-        password
+    dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
+    if (response && response.idToken) {
+      dispatch({
+        type: LOGIN_CONSTANT.LOGIN_SUCCESS,
+        payload: { idToken: response.idToken }
       });
-
-      dispatch({ type: LOADING_ACTION_TYPE.CLOSE });
-      if (response && response.token) {
-        dispatch({
-          type: LOGIN_CONSTANT.LOGIN_SUCCESS,
-          payload: { token }
-        });
-      } else {
-        dispatch({
-          type: MODAL_ACTION_TYPE.OPEN,
-          payload: {
-            type: MODAL_TYPE.ALERT,
-            title: 'login-error-title',
-            message: 'login-error-message'
-          }
-        });
-      }
-    }, 3000);
+    } else {
+      dispatch({
+        type: MODAL_ACTION_TYPE.OPEN,
+        payload: {
+          type: MODAL_TYPE.ALERT,
+          title: 'login-error-title',
+          message: 'login-error-message'
+        }
+      });
+    }
   }
 };

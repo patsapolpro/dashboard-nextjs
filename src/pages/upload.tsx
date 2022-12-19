@@ -1,7 +1,6 @@
 import { AdminLayout } from '@layout';
 import type { NextPage } from 'next'
 import React, { useCallback, useState } from 'react';
-import DropBox from '../components/DropBox/DropBox';
 import InputDID from '../components/Input/InputDID';
 import SelectIssuer from '../components/Select/SelectIssuer';
 import Modal from 'src/components/Modal';
@@ -75,7 +74,6 @@ const Upload: NextPage = () => {
                   <Modal json={json}/>
                   <SelectIssuer />
                   <InputDID />
-                  <DropBox json={json}/>
                   <br/>
                   <div className="center">
                     <button type="button" class="btn btn-warning bth-custom" onClick={reload}>Clear</button>
